@@ -5,6 +5,7 @@
   padding-left: 25px;
   margin-right: auto;
   margin-left: auto;
+  background-color: #fafafa;
 }
 
 .container-fluid {
@@ -12,11 +13,53 @@
   max-width: 100%;
 }
 
+.Searchbar {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: 5%;
+}
+
+.Searchbar input {
+  padding: 0.6em;
+  border: none;
+  outline: none;
+  font-size: 1.45em;
+}
+.view {
+  position: relative;
+}
+.view .mask {
+  display: flex;
+  justify-content: space-around;
+  background: rgb(255, 255, 255);
+  width: 100%;
+  height: 50px;
+  position: absolute;
+  top: 0;
+  opacity: 0;
+  transition: opacity 0.3s linear;
+  border-radius: 5px;
+}
+
+.mask i {
+  cursor: pointer;
+  transition: 0.3s ease all;
+}
+
+.mask i:hover {
+  transform: scale(1.1);
+}
+.view:hover .mask {
+  opacity: 0.8;
+}
+
 .PhotoGallery__Grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   grid-gap: 20px;
   align-items: stretch;
+  margin: 7% 0;
 }
 
 .PhotoGallery__Grid img {
