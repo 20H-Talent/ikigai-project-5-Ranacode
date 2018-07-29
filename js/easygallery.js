@@ -7,43 +7,54 @@ let mockdataPath = "/mockdata/images.json";
 interactiveButtons.addEventListener("click", changeDisplayGrid);
 checkbox.addEventListener("change", toggleSwitch, false);
 
-renderGalleryImages(mockdataPath);
+fetchGalleryImages(mockdataPath);
 
 function changeDisplayGrid(e) {
   const displayMode = e.target.classList[e.target.classList.length - 1];
-  if (!e.target.classList.contains("selected")) {
+  console.log(e.target.nodeName);
+  if (!e.target.classList.contains("selected") && e.target.nodeName !== "DIV") {
     e.target.classList.add("selected");
     e.target.nextElementSibling === null
       ? e.target.previousElementSibling.classList.remove("selected")
       : e.target.nextElementSibling.classList.remove("selected");
     galleryGrid.setAttribute("class", `PhotoGallery__Grid ${displayMode}`);
-    renderGalleryImages(mockdataPath, displayMode);
+    fetchGalleryImages(mockdataPath, displayMode);
   }
 }
 
-function renderGalleryImages(path, display = "thumbnail") {
+function fetchGalleryImages(path, display = "thumbnail") {
   const { host, protocol } = window.location;
   const url = `${protocol}//${host}/${path}`;
-  fetch(url, {
-    method: "GET",
-    mode: "same-origin",
-    headers: {
-      "Content-Type": "application/json; charset=utf-8"
-    },
-    referrer: "no-referrer"
-  })
-    .then(response => response.json())
-    .then(data => {
-      const images = data;
-      galleryGrid.innerHTML = "";
-      images.forEach(image => {
-        galleryGrid.appendChild(createSpinnerFragment());
-        setTimeout(() => {
-          createImageElement(image, display);
-        }, 1000);
-      });
+  if (localStorage.getItem("images")) {
+    const images = JSON.parse(localStorage.getItem("images"));
+    renderGalleryImages(images, display);
+  } else {
+    fetch(url, {
+      method: "GET",
+      mode: "same-origin",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      referrer: "no-referrer"
     })
-    .catch(err => console.log(err));
+      .then(response => response.json())
+      .then(data => {
+        const images = data;
+        localStorage.setItem("images", JSON.stringify(data));
+        renderGalleryImages(images, display);
+      })
+      .catch(err => console.log(err));
+  }
+}
+
+function renderGalleryImages(images, display) {
+  galleryGrid.innerHTML = "";
+  images.forEach(image => {
+    galleryGrid.appendChild(createSpinnerFragment());
+    setTimeout(() => {
+      createImageElement(image, display);
+    }, 1000);
+  });
 }
 
 function createImageElement(image, display) {
