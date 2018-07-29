@@ -108,13 +108,51 @@ input:checked + .slider:before {
   justify-content: center;
   align-content: center;
   margin-top: 5%;
+  margin-bottom: 4%;
 }
 
 .Searchbar input {
-  padding: 0.6em;
+  width: 45%;
+  height: auto;
+  padding: 0.6em 0.4em;
   border: none;
   outline: none;
+  border-radius: 8px;
   font-size: 1.45em;
+  font-family: Montserrat, serif;
+  opacity: 0.7;
+  transition: all 0.3s ease-out;
+}
+
+.Searchbar input:focus {
+  padding: 0.6em 1em;
+  width: 70%;
+  transform: scale(1.2);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fffd82;
+  font-weight: bold;
+}
+
+.Searchbar input::-webkit-input-placeholder {
+  color: black;
+  font-weight: bold;
+  font-style: italic;
+}
+.Searchbar input::-moz-placeholder {
+  color: black;
+  font-weight: bold;
+  font-style: italic;
+}
+.Searchbar input:-ms-input-placeholder {
+  color: black;
+  font-weight: bold;
+  font-style: italic;
+}
+.Searchbar input:-moz-placeholder {
+  color: black;
+  font-weight: bold;
+  font-style: italic;
 }
 
 .PhotoGallery__Grid {
