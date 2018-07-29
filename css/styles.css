@@ -195,25 +195,22 @@ input:checked + .slider:before {
 .PhotoGallery__View .PhotoGallery__Img--mask {
   display: flex;
   justify-content: space-around;
-  background: rgb(255, 255, 255);
+  background: rgba(97, 97, 97, 0.9);
   width: 100%;
-  max-width: 200px;
+  max-width: 202px;
   height: 50px;
   position: absolute;
   top: 0;
   opacity: 0;
   transition: opacity 0.3s linear;
-  border-radius: 5px;
 }
-
-.PhotoGallery__Img--mask i {
-  cursor: pointer;
-  transition: 0.3s ease all;
-  padding: 0.25em;
-}
-
-.PhotoGallery__Img--mask i:hover {
-  transform: scale(1.1);
+.PhotoGallery__Img--mask p {
+  margin: 0.2em 0 0 0;
+  padding: 0.3em;
+  font-size: 1.25em;
+  font-family: Montserra, sans-serif;
+  font-weight: bold;
+  color: #fffd82;
 }
 .PhotoGallery__View:hover .PhotoGallery__Img--mask {
   opacity: 0.8;
@@ -326,7 +323,7 @@ input:checked + .slider:before {
   height: 100%;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.9);
   transition: opacity 0.3s ease-out;
 }
 
@@ -351,6 +348,7 @@ input:checked + .slider:before {
 .lightbox .main-image {
   position: relative;
   margin-top: 1.5%;
+  padding-right: 1.75em;
 }
 
 .main-image img {
@@ -358,5 +356,8 @@ input:checked + .slider:before {
   max-width: 90%;
   max-height: 70%;
   margin: 0 auto;
-  padding-right: 1.75em;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 4px;
+  padding: 13px;
 }

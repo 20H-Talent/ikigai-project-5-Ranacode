@@ -2,6 +2,7 @@ const galleryGrid = document.querySelector(".PhotoGallery__Grid");
 const checkbox = document.querySelector("input[type=checkbox");
 const interactiveButtons = document.querySelector(".Interactive__Buttons");
 const lightbox = document.querySelector(".lightbox");
+const searchbar = document.getElementById("searchbar");
 let mockdataPath = "/mockdata/images.json";
 
 //Event delegation on interactive buttons to change grid display
@@ -41,7 +42,7 @@ fetchGalleryImages(mockdataPath);
 
 function changeDisplayGrid(e) {
   const displayMode = e.target.classList[e.target.classList.length - 1];
-  console.log(e.target.nodeName);
+
   if (!e.target.classList.contains("selected") && e.target.nodeName !== "DIV") {
     e.target.classList.add("selected");
     e.target.nextElementSibling === null
@@ -79,12 +80,18 @@ function fetchGalleryImages(path, display = "thumbnail") {
 
 function renderGalleryImages(images, display) {
   galleryGrid.innerHTML = "";
-  images.forEach(image => {
-    galleryGrid.appendChild(createSpinnerFragment());
-    setTimeout(() => {
-      createImageElement(image, display);
-    }, 1000);
-  });
+  if (images.length > 0) {
+    images.forEach(image => {
+      galleryGrid.appendChild(createSpinnerFragment());
+      setTimeout(() => {
+        createImageElement(image, display);
+      }, 1000);
+    });
+  } else {
+    //TEMPORAL
+    galleryGrid.innerHTML =
+      "<p>No hay ninguna imagen que coincida con la busqueda</p>";
+  }
 }
 
 function createImageElement(image, display) {
@@ -103,14 +110,18 @@ function createImageElement(image, display) {
   //The mask to apply visual effects and filters
   let Mask = document.createElement("div");
   Mask.setAttribute("class", "PhotoGallery__Img--mask");
-  Mask.style.maxWidth = display === "thumbnail" ? "200px" : "465px";
+  Mask.style.maxWidth = display === "thumbnail" ? "202px" : "465px";
+  /*
   const filterIcon = document.createElement("i");
   filterIcon.setAttribute("class", "fas fa-2x fa-filter");
   const filmIcon = document.createElement("i");
   filmIcon.setAttribute("class", "fas fa-2x fa-film");
   Mask.appendChild(filterIcon);
   Mask.appendChild(filmIcon);
-
+*/
+  const imageTitle = document.createElement("p");
+  imageTitle.innerText = place;
+  Mask.appendChild(imageTitle);
   View.appendChild(imageElement);
   View.appendChild(Mask);
 
@@ -153,3 +164,31 @@ function createSpinnerFragment() {
   fragment.appendChild(cube);
   return fragment;
 }
+
+function debounce(func, wait, immediate) {
+  var timeout;
+  return function() {
+    var context = this,
+      args = arguments;
+    var later = function() {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    };
+    var callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow) func.apply(context, args);
+  };
+}
+
+const searchFilter = debounce(function(e) {
+  const images = JSON.parse(localStorage.getItem("images"));
+  let searchValue = e.target.value;
+  let regex = new RegExp(searchValue, "gi");
+  const displayMode = galleryGrid.classList[galleryGrid.classList.length - 1];
+  const filteredImages = images.filter(image => regex.test(image.caption));
+
+  renderGalleryImages(filteredImages, displayMode);
+}, 300);
+
+searchbar.addEventListener("keydown", searchFilter);
