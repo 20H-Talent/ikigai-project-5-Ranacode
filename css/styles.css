@@ -5,7 +5,6 @@ body {
 
 .container {
   max-width: 1400px;
-  width: 98%;
   padding: 0 25px;
   margin-right: auto;
   margin-left: auto;
@@ -116,42 +115,20 @@ input:checked + .slider:before {
   outline: none;
   font-size: 1.45em;
 }
-.PhotoGallery__View {
-  position: relative;
-}
-.PhotoGallery__View .PhotoGallery__Img--mask {
-  display: flex;
-  justify-content: space-around;
-  background: rgb(255, 255, 255);
-  width: 100%;
-  max-width: 200px;
-  height: 50px;
-  position: absolute;
-  top: 0;
-  opacity: 0;
-  transition: opacity 0.3s linear;
-  border-radius: 5px;
-}
-
-.PhotoGallery__Img--mask i {
-  cursor: pointer;
-  transition: 0.3s ease all;
-  padding: 0.25em;
-}
-
-.PhotoGallery__Img--mask i:hover {
-  transform: scale(1.1);
-}
-.PhotoGallery__View:hover .PhotoGallery__Img--mask {
-  opacity: 0.8;
-}
 
 .PhotoGallery__Grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 20px;
   align-items: stretch;
   margin: 7% 0;
+}
+
+.PhotoGallery__Grid.thumbnail {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.PhotoGallery__Grid.large {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
 .PhotoGallery__Grid .PhotoGallery__Img.thumbnail {
@@ -159,6 +136,16 @@ input:checked + .slider:before {
   box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
   max-width: 100%;
   height: 200px;
+  cursor: pointer;
+  transition: transform ease 0.3s;
+}
+
+.PhotoGallery__Grid .PhotoGallery__Img.large {
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+  max-width: 100%;
+  width: 100%;
+  height: 230px;
   cursor: pointer;
   transition: transform ease 0.3s;
 }

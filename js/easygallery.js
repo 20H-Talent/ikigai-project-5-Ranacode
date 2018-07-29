@@ -1,18 +1,30 @@
 const galleryGrid = document.querySelector(".PhotoGallery__Grid");
 const checkbox = document.querySelector("input[type=checkbox");
-const thumbnailDisplay = document.querySelector("i.fa-th");
-const largeDisplay = document.querySelector("i.fa-th-large");
-
+const interactiveButtons = document.querySelector(".Interactive__Buttons");
 let mockdataPath = "/mockdata/images.json";
 
+//Event delegation on interactive buttons to change grid display
+interactiveButtons.addEventListener("click", changeDisplayGrid);
 checkbox.addEventListener("change", toggleSwitch, false);
 
 renderGalleryImages(mockdataPath);
 
+function changeDisplayGrid(e) {
+  switch (e.target.classList[2]) {
+    case "fa-th":
+      galleryGrid.setAttribute("class", "PhotoGallery__Grid thumbnail");
+      renderGalleryImages(mockdataPath, "thumbnail");
+      break;
+    case "fa-th-large":
+      galleryGrid.setAttribute("class", "PhotoGallery__Grid large");
+      renderGalleryImages(mockdataPath, "large");
+      break;
+  }
+}
+
 function renderGalleryImages(path, display = "thumbnail") {
   const { host, protocol } = window.location;
   const url = `${protocol}//${host}/${path}`;
-
   fetch(url, {
     method: "GET",
     mode: "same-origin",
@@ -28,27 +40,35 @@ function renderGalleryImages(path, display = "thumbnail") {
       images.forEach(image => {
         galleryGrid.appendChild(createSpinnerFragment());
         setTimeout(() => {
-          createImageElement(image);
+          createImageElement(image, display);
         }, 1000);
       });
     })
     .catch(err => console.log(err));
 }
 
-function createImageElement(image) {
+function createImageElement(image, display) {
   const { thumbnail, url, name, place, caption } = image;
   const fragment = document.createDocumentFragment();
+  //Main View Container the image
   let View = document.createElement("div");
   View.setAttribute("class", "PhotoGallery__View");
+  //The image element
   const imageElement = new Image();
-  imageElement.src = thumbnail;
+
+  imageElement.src = display === "thumbnail" ? thumbnail : url;
   imageElement.alt = place;
-  imageElement.setAttribute("class", "PhotoGallery__Img thumbnail");
+  imageElement.setAttribute("class", `PhotoGallery__Img ${display}`);
+  //The mask to apply visual effects and filters
   let Mask = document.createElement("div");
   Mask.setAttribute("class", "PhotoGallery__Img--mask");
+  Mask.style.maxWidth = display === "thumbnail" ? "200px" : "350px";
+
   View.appendChild(imageElement);
   View.appendChild(Mask);
+
   fragment.appendChild(View);
+
   galleryGrid.removeChild(document.querySelector("div.sk-cube-grid"));
   galleryGrid.appendChild(fragment);
 }
