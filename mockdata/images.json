@@ -1,6 +1,6 @@
 [
   {
-    "thumbnail": "images/photos/01.jpg",
+    "thumbnail": "images/photos/thumbnails/01.jpg",
     "url": "images/photos/01.jpg",
     "name": "01.jpg",
     "place": "Hay Bales",
@@ -8,7 +8,7 @@
       "I love hay bales. Took this snap on a drive through the countryside past some straw fields."
   },
   {
-    "thumbnail": "images/photos/thumbnail/02.jpg",
+    "thumbnail": "images/photos/thumbnails/02.jpg",
     "url": "images/photos/02.jpg",
     "name": "02.jpg",
     "place": "Lake",
@@ -16,7 +16,7 @@
       "The lake was so calm today. We had a great view of the snow on the mountains from here."
   },
   {
-    "thumbnail": "images/photos/thumbnail/03.jpg",
+    "thumbnail": "images/photos/thumbnails/03.jpg",
     "url": "images/photos/03.jpg",
     "name": "03.jpg",
     "place": "Canyon",
@@ -24,7 +24,7 @@
       "I hiked to the top of the mountain and got this picture of the canyon and trees below."
   },
   {
-    "thumbnail": "images/photos/thumbnail/04.jpg",
+    "thumbnail": "images/photos/thumbnails/04.jpg",
     "url": "images/photos/04.jpg",
     "name": "04.jpg",
     "place": "Iceberg",
@@ -32,7 +32,7 @@
       "It was amazing to see an iceberg up close, it was so cold but didn’t snow today."
   },
   {
-    "thumbnail": "images/photos/thumbnail/05.jpg",
+    "thumbnail": "images/photos/thumbnails/05.jpg",
     "url": "images/photos/05.jpg",
     "name": "05.jpg",
     "place": "Desert",
@@ -40,7 +40,7 @@
       "The red cliffs were beautiful. It was really hot in the desert but we did a lot of walking through the canyons."
   },
   {
-    "thumbnail": "images/photos/thumbnail/06.jpg",
+    "thumbnail": "images/photos/thumbnails/06.jpg",
     "url": "images/photos/06.jpg",
     "name": "06.jpg",
     "place": "Fall",
@@ -48,7 +48,7 @@
       "Fall is coming, I love when the leaves on the trees start to change color."
   },
   {
-    "thumbnail": "images/photos/thumbnail/07.jpg",
+    "thumbnail": "images/photos/thumbnails/07.jpg",
     "url": "images/photos/07.jpg",
     "name": "07.jpg",
     "place": "Plantation",
@@ -56,7 +56,7 @@
       "I drove past this plantation yesterday, everything is so green!    "
   },
   {
-    "thumbnail": "images/photos/thumbnail/08.jpg",
+    "thumbnail": "images/photos/thumbnails/08.jpg",
     "url": "images/photos/08.jpg",
     "name": "08.jpg",
     "place": "Dunes",
@@ -64,21 +64,21 @@
       "My summer vacation to the Oregon Coast. I love the sandy dunes!      "
   },
   {
-    "thumbnail": "images/photos/thumbnail/09.jpg",
+    "thumbnail": "images/photos/thumbnails/09.jpg",
     "url": "images/photos/09.jpg",
     "name": "09.jpg",
     "place": "Counstryside Lane",
     "caption": "We enjoyed a quiet stroll down this countryside lane.      "
   },
   {
-    "thumbnail": "images/photos/thumbnail/10.jpg",
+    "thumbnail": "images/photos/thumbnails/10.jpg",
     "url": "images/photos/10.jpg",
     "name": "10.jpg",
     "place": "Sunset",
     "caption": "Sunset at the coast! The sky turned a lovely shade of orange."
   },
   {
-    "thumbnail": "images/photos/thumbnail/11.jpg",
+    "thumbnail": "images/photos/thumbnails/11.jpg",
     "url": "images/photos/11.jpg",
     "name": "11.jpg",
     "place": "Cave",
@@ -87,7 +87,7 @@
   },
 
   {
-    "thumbnail": "images/photos/thumbnail/12.jpg",
+    "thumbnail": "images/photos/thumbnails/12.jpg",
     "url": "images/photos/12.jpg",
     "name": "12.jpg",
     "place": "Bluebells",
