@@ -10,18 +10,29 @@ checkbox.addEventListener("change", toggleSwitch, false);
 
 galleryGrid.addEventListener("click", function(e) {
   if (e.target.nodeName === "IMG") {
-    const light = document.querySelector(".lightbox");
-    light.style.display = "block";
+    const imageSection = lightbox.children[1];
+    lightbox.classList.add("active");
     setTimeout(() => {
       lightbox.style.opacity = 1;
     }, 100);
+
+    const filteredImage = JSON.parse(localStorage.getItem("images")).filter(
+      image => image.place === e.target.alt
+    );
+
+    const { url, place } = filteredImage[0];
+    const mainImage = new Image();
+    mainImage.src = url;
+    mainImage.alt = place;
+    imageSection.innerHTML = "";
+    imageSection.appendChild(mainImage);
   }
 });
 
 //Close event for the lightbox <span class="close">...</span>
 lightbox.children[0].addEventListener("click", function(e) {
   setTimeout(() => {
-    lightbox.style.display = "none";
+    lightbox.classList.remove("active");
   }, 300);
   lightbox.style.opacity = 0;
 });

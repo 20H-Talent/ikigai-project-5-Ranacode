@@ -330,13 +330,33 @@ input:checked + .slider:before {
   transition: opacity 0.3s ease-out;
 }
 
+.lightbox.active {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+}
 .lightbox span.close {
   font-size: 3em;
   color: white;
   cursor: pointer;
   transition: transform 0.3s ease-in;
+  align-self: flex-end;
+  padding: 0 0.5em;
 }
 
 .lightbox span.close:hover {
-  transform: scale(1.2);
+  color: yellow;
+}
+
+.lightbox .main-image {
+  position: relative;
+  margin-top: 1.5%;
+}
+
+.main-image img {
+  display: block;
+  max-width: 90%;
+  max-height: 70%;
+  margin: 0 auto;
+  padding-right: 1.75em;
 }
