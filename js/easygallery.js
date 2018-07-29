@@ -10,15 +10,14 @@ checkbox.addEventListener("change", toggleSwitch, false);
 renderGalleryImages(mockdataPath);
 
 function changeDisplayGrid(e) {
-  switch (e.target.classList[2]) {
-    case "fa-th":
-      galleryGrid.setAttribute("class", "PhotoGallery__Grid thumbnail");
-      renderGalleryImages(mockdataPath, "thumbnail");
-      break;
-    case "fa-th-large":
-      galleryGrid.setAttribute("class", "PhotoGallery__Grid large");
-      renderGalleryImages(mockdataPath, "large");
-      break;
+  const displayMode = e.target.classList[e.target.classList.length - 1];
+  if (!e.target.classList.contains("selected")) {
+    e.target.classList.add("selected");
+    e.target.nextElementSibling === null
+      ? e.target.previousElementSibling.classList.remove("selected")
+      : e.target.nextElementSibling.classList.remove("selected");
+    galleryGrid.setAttribute("class", `PhotoGallery__Grid ${displayMode}`);
+    renderGalleryImages(mockdataPath, displayMode);
   }
 }
 

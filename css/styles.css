@@ -42,6 +42,7 @@ nav i.fa-moon {
 .Interactive__Buttons i {
   padding: 0 0.7em;
   cursor: pointer;
+  transition: transform 0.3s ease-in;
 }
 
 .switch {
@@ -148,6 +149,41 @@ input:checked + .slider:before {
   height: 230px;
   cursor: pointer;
   transition: transform ease 0.3s;
+}
+
+.PhotoGallery__View {
+  position: relative;
+}
+.PhotoGallery__View .PhotoGallery__Img--mask {
+  display: flex;
+  justify-content: space-around;
+  background: rgb(255, 255, 255);
+  width: 100%;
+  max-width: 200px;
+  height: 50px;
+  position: absolute;
+  top: 0;
+  opacity: 0;
+  transition: opacity 0.3s linear;
+  border-radius: 5px;
+}
+
+.PhotoGallery__Img--mask i {
+  cursor: pointer;
+  transition: 0.3s ease all;
+  padding: 0.25em;
+}
+
+.PhotoGallery__Img--mask i:hover {
+  transform: scale(1.1);
+}
+.PhotoGallery__View:hover .PhotoGallery__Img--mask {
+  opacity: 0.8;
+}
+
+.selected {
+  transform: scale(1.1);
+  color: #157145;
 }
 
 @media screen and (max-width: 429px) {
