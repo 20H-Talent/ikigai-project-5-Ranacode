@@ -1,11 +1,30 @@
 const galleryGrid = document.querySelector(".PhotoGallery__Grid");
 const checkbox = document.querySelector("input[type=checkbox");
 const interactiveButtons = document.querySelector(".Interactive__Buttons");
+const lightbox = document.querySelector(".lightbox");
 let mockdataPath = "/mockdata/images.json";
 
 //Event delegation on interactive buttons to change grid display
 interactiveButtons.addEventListener("click", changeDisplayGrid);
 checkbox.addEventListener("change", toggleSwitch, false);
+
+galleryGrid.addEventListener("click", function(e) {
+  if (e.target.nodeName === "IMG") {
+    const light = document.querySelector(".lightbox");
+    light.style.display = "block";
+    setTimeout(() => {
+      lightbox.style.opacity = 1;
+    }, 100);
+  }
+});
+
+//Close event for the lightbox <span class="close">...</span>
+lightbox.children[0].addEventListener("click", function(e) {
+  setTimeout(() => {
+    lightbox.style.display = "none";
+  }, 300);
+  lightbox.style.opacity = 0;
+});
 
 fetchGalleryImages(mockdataPath);
 
@@ -60,19 +79,26 @@ function renderGalleryImages(images, display) {
 function createImageElement(image, display) {
   const { thumbnail, url, name, place, caption } = image;
   const fragment = document.createDocumentFragment();
-  //Main View Container the image
+
   let View = document.createElement("div");
   View.setAttribute("class", "PhotoGallery__View");
-  //The image element
+
   const imageElement = new Image();
 
   imageElement.src = display === "thumbnail" ? thumbnail : url;
   imageElement.alt = place;
   imageElement.setAttribute("class", `PhotoGallery__Img ${display}`);
+
   //The mask to apply visual effects and filters
   let Mask = document.createElement("div");
   Mask.setAttribute("class", "PhotoGallery__Img--mask");
-  Mask.style.maxWidth = display === "thumbnail" ? "200px" : "350px";
+  Mask.style.maxWidth = display === "thumbnail" ? "200px" : "465px";
+  const filterIcon = document.createElement("i");
+  filterIcon.setAttribute("class", "fas fa-2x fa-filter");
+  const filmIcon = document.createElement("i");
+  filmIcon.setAttribute("class", "fas fa-2x fa-film");
+  Mask.appendChild(filterIcon);
+  Mask.appendChild(filmIcon);
 
   View.appendChild(imageElement);
   View.appendChild(Mask);
