@@ -194,17 +194,21 @@ input:checked + .slider:before {
 }
 .PhotoGallery__View .PhotoGallery__Img--mask {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
   background: rgba(97, 97, 97, 0.9);
   width: 100%;
   max-width: 202px;
   height: 50px;
+  max-height: 50%;
   position: absolute;
   top: 0;
   opacity: 0;
   transition: opacity 0.3s linear;
 }
 .PhotoGallery__Img--mask p {
+  text-align: center;
   margin: 0.2em 0 0 0;
   padding: 0.3em;
   font-size: 1.25em;
@@ -316,6 +320,7 @@ input:checked + .slider:before {
   /** Default lightbox to hidden */
   display: none;
   opacity: 0;
+  overflow-y: auto;
   /** Position and style */
   position: fixed;
   z-index: 999;
