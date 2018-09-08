@@ -21,12 +21,18 @@ galleryGrid.addEventListener("click", function(e) {
       image => image.place === e.target.alt
     );
 
-    const { url, place } = filteredImage[0];
+    const { url, place, caption } = filteredImage[0];
     const mainImage = new Image();
     mainImage.src = url;
     mainImage.alt = place;
     imageSection.innerHTML = "";
-    imageSection.appendChild(mainImage);
+    const figure = document.createElement("figure");
+    const figCaption = document.createElement("figcaption");
+    figCaption.innerText = caption;
+    figure.appendChild(mainImage);
+    figure.appendChild(figCaption);
+    imageSection.appendChild(figure);
+    //imageSection.appendChild(mainImage);
   }
 });
 
